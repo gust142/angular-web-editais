@@ -27,7 +27,8 @@ jobs:
       run: |
         sudo apt-get install lftp  # Instalar lftp
         lftp -e "
-          set ftp:ssl-verify-certificate no;
+          set ftp:ssl-force true;  # Forçar o uso de SSL
+          set ftp:ssl-protect-data true;  # Proteger os dados durante a transferência
           open ftp://$FTP_USER:$FTP_PASSWORD@$FTP_SERVER;
           mirror -R ./dist/ /domains/systemsgf.com.br/public_html/processo-seletivo/;
           bye
