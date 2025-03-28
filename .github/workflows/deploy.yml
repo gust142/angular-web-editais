@@ -1,0 +1,41 @@
+name: Deploy Angular App via FTP
+
+on:
+  push:
+    branches:
+      - main  # Altere para sua branch de produção, caso não seja 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checar código do repositório
+      uses: actions/checkout@v2
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Defina a versão do Node.js que seu projeto está usando
+
+    - name: Instalar dependências do projeto
+      run: npm install
+
+    - name: Rodar o build Angular
+      run: npm run build -- --prod  # Gera os arquivos de produção no diretório 'dist/'
+
+    - name: Configurar FTP e enviar arquivos
+      run: |
+        sudo apt-get install lftp  # Instalar lftp
+        lftp -e "
+          open ftp://$FTP_USER:$FTP_PASSWORD@$FTP_SERVER;
+          mirror -R ./dist/ /domains/systemsgf.com.br/public_html/processo-seletivo/;
+          bye
+        " -u $FTP_USER,$FTP_PASSWORD
+      env:
+        FTP_USER: ${{ secrets.FTP_USER }}
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        FTP_SERVER: ${{ secrets.FTP_SERVER }}
+
+    - name: Limpeza após o deploy
+      run: echo "Deploy via FTP finalizado!"
