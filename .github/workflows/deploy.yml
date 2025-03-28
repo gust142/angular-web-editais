@@ -36,7 +36,7 @@ jobs:
             username: ${{ secrets.FTP_USER }}
             password: ${{ secrets.FTP_PASSWORD }}
             port: 22
-            source: "dist/browser/*"
+            source: "/home/runner/work/angular-web-editais/angular-web-editais/dist/editais-web/*"
             target: "/domains/systemsgf.com.br/public_html/projeto-teste"
 
           
