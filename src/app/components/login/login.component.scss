@@ -1,0 +1,62 @@
+
+.color-bar {
+    height: 5px;
+    width: 100%;
+}
+
+.orange {
+    background-color: #FF5733;
+}
+
+.green {
+    background-color: #28a745;
+}
+
+.blue {
+    background-color: #1A7BBD;
+}
+
+.custom-toolbar {
+    background-color: transparent;
+    color: white;
+    padding: 10px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+img {
+    width: 150px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.login-card {
+  width: 400px;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-card-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.botao {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}

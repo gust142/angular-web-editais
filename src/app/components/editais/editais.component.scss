@@ -1,0 +1,90 @@
+
+body {
+    background: linear-gradient(135deg, #1f2b38 0%, #101820 100%);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+.color-bar {
+    height: 5px;
+    width: 100%;
+}
+
+.orange {
+    background-color: #FF5733;
+}
+
+.green {
+    background-color: #28a745;
+}
+
+.blue {
+    background-color: #1A7BBD;
+}
+
+.custom-toolbar {
+    background-color: transparent;
+    color: white;
+    padding: 10px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+img {
+    width: 150px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: flex-start;
+    padding: 40px;
+}
+
+mat-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: calc(50% - 32px);
+}
+
+mat-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+mat-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1A7BBD;
+}
+
+mat-card-content {
+    font-size: 1rem;
+}
+
+button.mat-flat-button {
+    background-color: #1A7BBD;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+button.mat-flat-button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 1024px) {
+    mat-card {
+        width: calc(100% - 32px);
+    }
+}
+

@@ -1,0 +1,40 @@
+<div class="color-bar orange"></div>
+<div class="color-bar green"></div>
+<div class="color-bar blue"></div>
+<mat-toolbar class="custom-toolbar">
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
+        style="margin-right:10px" (click)="voltar()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <img src="https://www.institutoovidiomachado.org/processoseletivo/wp-content/uploads/2020/04/logosite.png"
+        class="logo">
+    <span class="example-spacer"></span>
+</mat-toolbar>
+<div class="login-container">
+    <mat-card class="login-card">
+        <mat-card-title>Iniciar Sessão</mat-card-title>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="email" placeholder="Digite seu email" />
+                <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+                    O email é obrigatório
+                </mat-error>
+                <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+                    Email inválido
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Senha</mat-label>
+                <input matInput formControlName="password" type="password" placeholder="Digite sua senha" />
+                <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                    A senha é obrigatória
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-flat-button type="submit" class="botao" style="background-color: #1A7BBD"
+                [disabled]="!loginForm.valid">Entrar</button>
+        </form>
+    </mat-card>
+</div>

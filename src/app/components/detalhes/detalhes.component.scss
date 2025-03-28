@@ -1,0 +1,172 @@
+.color-bar {
+    height: 5px;
+    width: 100%;
+}
+
+.orange {
+    background-color: #FF5733;
+}
+
+.green {
+    background-color: #28a745;
+}
+
+.blue {
+    background-color: #1A7BBD;
+}
+
+.custom-toolbar {
+    background-color: transparent;
+    color: white;
+    padding: 10px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+img {
+    width: 150px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+body {
+    background-color: #f4f6f9; 
+    font-family: 'Roboto', sans-serif;
+    color: #333; 
+    margin: 0;
+    padding: 0;
+}
+
+.modern-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+    margin:2%;
+    background-color: white; 
+    border: none;
+}
+
+
+/* Estilo dos Títulos */
+.card-title {
+    font-size: 1.6rem; /* Aumenta o tamanho do título */
+    color: #0E6EB8; /* Cor profissional e discreta */
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.card-description {
+    font-size: 1.1rem;
+    color: #666; /* Tom suave de cinza para fácil leitura */
+    line-height: 1.7; /* Maior espaçamento para melhorar a leitura */
+    margin-bottom: 12px;
+}
+
+/* Grid layout dos cards */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 2px;
+}
+
+.card-grid mat-card {
+    flex: 0 1 calc(60% - 20px);
+    max-width: calc(46% - 20px);
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+    .card-grid mat-card {
+        flex: 1 1 calc(100% - 20px); /* Layout mobile */
+        max-width: 100%;
+    }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 600px) {
+    .card-grid mat-card {
+        flex: 1 1 100%; 
+        max-width: 100%;
+    }
+}
+
+/* Lista de Links */
+.link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link-list li {
+    margin-bottom: 8px;
+}
+
+.link {
+    color: #0E6EB8; 
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #054a77;
+    text-decoration: underline;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-field {
+    width: 98%;
+}
+
+mat-form-field {
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 0 12px;
+}
+
+.blue-button {
+    background-color: #0E6EB8 !important;
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.blue-button:hover {
+    background-color: #054a77 !important;
+}
+
+.submit-button {
+    align-self: flex-end;
+}
+@media (max-width: 600px) {
+    .submit-button {
+        align-self: center;
+    }
+}
+
+::ng-deep mat-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #f0f4f8;
+    border-radius: 8px;
+}
+
+a {
+    color: #0E6EB8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,149 @@
+<div class="color-bar orange"></div>
+<div class="color-bar green"></div>
+<div class="color-bar blue"></div>
+<mat-toolbar class="custom-toolbar">
+    <img src="https://www.institutoovidiomachado.org/processoseletivo/wp-content/uploads/2020/04/logosite.png"
+        class="logo" (click)="irParaEditais()" style="cursor:pointer">
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="User icon" (click)="login()">
+        <mat-icon>person</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-tab-group>
+    <mat-tab label="Visão Geral"> Content 1 </mat-tab>
+    <mat-tab label="Editais">
+        <div class="card" style="margin: 2%;">
+            <div class="card-body">
+                <h5 class="card-title">Pesquisar Editais</h5>
+                <form>
+                    <div class="form-row align-items-end">
+                        <div class="col-2">
+                            <label for="inputYear">Ano</label>
+                            <select id="inputYear" class="form-control" (change)="onYearChange($event)">
+                                <option value="" disabled selected>Selecione o Ano</option>
+                                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <select id="inputOng" class="form-control" [(ngModel)]="processoSelecionado"
+                                (ngModelChange)="onOngChange($event)" name="ong">
+                                <option value="" disabled selected>Selecione o Processo Seletivo</option>
+                                <option *ngFor="let ong of processos" [ngValue]="ong">{{ ong.nome }}</option>
+                            </select>
+                        </div>
+                        <div class="col-1" style="margin-right: 10px;">
+                            <button mat-flat-button class="access-button" (click)="buscarEditais()">Buscar</button>
+                        </div>
+                        <div class="col-3">
+                            <button mat-flat-button class="access-button" (click)="criarEdital()"
+                                [disabled]="anoSelecionado == null || !criaEdital">Criar Novo
+                                Edital</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card shadow-sm" style="margin: 2%; border-radius: 8px;">
+            <div class="card-body" *ngFor="let item of editais">
+                <mat-expansion-panel class="mb-3">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> Edital N {{item.numero}}/{{item.ano}} -
+                            {{this.processoSelecionado.nome}}</mat-panel-title>
+                        <mat-panel-description>
+                            <small>Descrição do edital</small>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <form>
+                        <div class="form-row align-items-end">
+                            <div class="col-12 col-md-4 mb-3">
+                                <input type="text" id="numero" [value]="item.numero" [(ngModel)]="item.numero"
+                                    [ngModelOptions]="{standalone: true}" class="form-control"
+                                    placeholder="Número do Edital" [ngClass]="{'is-invalid': !item.numero}">
+                            </div>
+                            <div class="col-12 col-md-4 mb-3">
+                                <input type="text" id="descricao" [value]="item.descricao" class="form-control"
+                                    [(ngModel)]="item.descricao" [ngModelOptions]="{standalone: true}"
+                                    placeholder="Descrição" [ngClass]="{'is-invalid': !item.descricao}">
+                            </div>
+                            <div class="col-12 col-md-2 mb-3 d-flex align-items-center">
+                                <mat-slide-toggle [checked]="item.aberto" color="primary" label="Edital Aberto"
+                                    [(ngModel)]="item.aberto" [ngModelOptions]="{standalone: true}"
+                                    labelPosition="before" style="margin-right: 10px;">Recurso
+                                    Aberto?</mat-slide-toggle>
+                            </div>
+                            <div class="col-12 col-md-2 mb-3 d-flex justify-content-end">
+                                <button mat-flat-button color="primary" (click)="salvarOuAtualizarEdital(item)">
+                                    <mat-icon>save</mat-icon> Salvar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-expansion-panel>
+            </div>
+        </div>
+
+
+    </mat-tab>
+    <mat-tab label="Links Editais">
+        <div class="card" style="margin: 2%;">
+            <div class="card-body">
+                <h5 class="card-title">Gerenciar Link dos Editais</h5>
+                <form>
+                    <div class="form-row align-items-end">
+                        <div class="col-4">
+                            <label for="">Edital</label>
+                            <select id="inputOng" class="form-control" [(ngModel)]="processoSelecionado"
+                                [ariaPlaceholder]="'Selecione o Edital'" (ngModelChange)="onEditalChange($event)"
+                                name="ong">
+                                <option value="" disabled selected>Selecione Edital</option>
+                                <option *ngFor="let item of editaisLinks" [ngValue]="item">
+                                    Edital N {{item.numero + '/'+ item.ano + ' - '+ item.ong.nome}}
+                                </option>
+                            </select>
+                        </div>
+                        <!-- <div class="col-1" style="margin-right: 10px;">
+                            <button mat-flat-button class="access-button" (click)="buscarEditais()">Buscar</button>
+                        </div> -->
+                        <div class="col-3">
+                            <button mat-flat-button class="access-button" (click)="criarLink()"
+                                [disabled]="!criaRecurso">
+                                Criar Novo Link
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card shadow-sm" style="margin: 2%; border-radius: 8px;">
+            <div class="card-body" *ngFor="let item of editalSelecionado.links">
+                <mat-expansion-panel class="mb-3">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> {{item.nome+ ' - '+ item.url}}</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <form>
+                        <div class="form-row align-items-end">
+                            <div class="col-12 col-md-4 mb-3">
+                                <input type="text" id="numero" [value]="item.nome" [(ngModel)]="item.nome"
+                                    [ngModelOptions]="{standalone: true}" class="form-control"
+                                    placeholder="Nome do link" [ngClass]="{'is-invalid': !item.nome}">
+                            </div>
+                            <div class="col-12 col-md-4 mb-3">
+                                <input type="text" id="descricao" [value]="item.url" class="form-control"
+                                    [(ngModel)]="item.url" [ngModelOptions]="{standalone: true}" placeholder="Url"
+                                    [ngClass]="{'is-invalid': !item.url}">
+                            </div>
+                            <div class="col-12 col-md-2 mb-3 d-flex justify-content-end">
+                                <button mat-flat-button color="primary" (click)="salvarOuAtualizarLink(item)">
+                                    <mat-icon>save</mat-icon> Salvar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-expansion-panel>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Recursos"> Content 3 </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,78 @@
+<div class="color-bar orange"></div>
+<div class="color-bar green"></div>
+<div class="color-bar blue"></div>
+<mat-toolbar class="custom-toolbar">
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
+        style="margin-right:10px" (click)="voltar()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <img src="https://www.institutoovidiomachado.org/processoseletivo/wp-content/uploads/2020/04/logosite.png"
+        class="logo">
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="User icon" (click)="login()">
+        <mat-icon>person</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-card class="modern-card" appearance="outlined">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title class="card-title">
+                <b>EDITAL Nº {{edital.numero}}/{{edital.ano}} - {{edital.ong.nome}}</b>
+            </mat-card-title>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content class="card-description">
+        {{edital.descricao}}
+    </mat-card-content>
+</mat-card>
+
+<div class="card-grid" *ngIf="edital != undefined">
+    <mat-card class="modern-card" appearance="outlined">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title class="card-title">
+                    <b>Editais</b>
+                </mat-card-title>
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <ul class="link-list">
+                <li *ngFor="let link of edital.links">
+                    <a href="{{link.url}}" target="_blank" class="link">{{link.nome}}</a>
+                </li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="modern-card" appearance="outlined">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title class="card-title">
+                    <b>Recursos</b>
+                </mat-card-title>
+            </mat-card-title-group>
+        </mat-card-header>
+
+        <mat-card-content *ngIf="edital.aberto == true">
+            <form [formGroup]="form" (ngSubmit)="submitForm()" class="form-container">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Nome Completo</mat-label>
+                    <input formControlName="nome" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Cargo</mat-label>
+                    <input formControlName="cargo" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Assunto</mat-label>
+                    <input formControlName="assunto" matInput>
+                </mat-form-field>
+                <button mat-flat-button class="blue-button submit-button" type="submit">Enviar Formulário</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

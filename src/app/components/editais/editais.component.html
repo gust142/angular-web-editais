@@ -1,0 +1,29 @@
+<div class="color-bar orange"></div>
+<div class="color-bar green"></div>
+<div class="color-bar blue"></div>
+<mat-toolbar class="custom-toolbar">
+    <img src="https://www.institutoovidiomachado.org/processoseletivo/wp-content/uploads/2020/04/logosite.png"
+        class="logo">
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="User icon" (click)="login()">
+        <mat-icon>person</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div class="card-grid">
+    <mat-card class="example-card" appearance="outlined" *ngFor="let item of lista">
+        <div class="card-content">
+            <mat-card-header>
+                <mat-card-title>
+                    <b>EDITAL Nº {{item.numero}}/{{item.ano}} - {{item.ong.nome??''}}</b>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                {{item.descricao}}
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-flat-button class="access-button" (click)="acessarEdital(item)">Acessar Edital</button>
+            </mat-card-actions>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,41 @@
+.color-bar {
+    height: 5px;
+    width: 100%;
+}
+
+.orange {
+    background-color: #FF5733;
+}
+
+.green {
+    background-color: #28a745;
+}
+
+.blue {
+    background-color: #1A7BBD;
+}
+
+.custom-toolbar {
+    background-color: transparent;
+    color: white;
+    padding: 10px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+img {
+    width: 150px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.card{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
