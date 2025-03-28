@@ -36,4 +36,4 @@ jobs:
          username: ${{ secrets.FTP_USER }}
          password: ${{ secrets.FTP_PASSWORD }}
          local-dir: "./dist/editais-web/browser/" 
-         server-dir: "/domains/systemsgf.com.br/public_html/projeto-teste/"
+         server-dir: "/domains/systemsgf.com.br/public_html/processo-seletivo/"
