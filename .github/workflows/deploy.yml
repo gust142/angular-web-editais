@@ -26,7 +26,7 @@ jobs:
 
       # Passo 4: Construir o projeto Angular
       - name: Build Angular project
-        run: npm run build --prod
+        run: npm run build 
 
       # Passo 5: Enviar os arquivos para o servidor (usando SFTP ou FTP)
       - name: Deploy to server using SCP
@@ -36,7 +36,7 @@ jobs:
             username: ${{ secrets.FTP_USER }}
             password: ${{ secrets.FTP_PASSWORD }}
             port: 22
-            source: "/home/runner/work/angular-web-editais/angular-web-editais/dist/editais-web/*"
+            source: "dist/browser/*"
             target: "/domains/systemsgf.com.br/public_html/projeto-teste"
 
           
