@@ -16,13 +16,12 @@ jobs:
     - name: Configurar Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'  # Defina a versão do Node.js que seu projeto está usando
-
+        node-version: '20'  
     - name: Instalar dependências do projeto
       run: npm install
 
     - name: Rodar o build Angular
-      run: npm run build -- --prod  # Gera os arquivos de produção no diretório 'dist/'
+      run: npm run build -- --prod 
 
     - name: Configurar FTP e enviar arquivos
       run: |
