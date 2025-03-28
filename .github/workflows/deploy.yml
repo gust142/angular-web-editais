@@ -26,7 +26,7 @@ jobs:
 
       # Passo 4: Construir o projeto Angular
       - name: Build Angular project
-        run: npm run build
+        run: npm run build --prod
 
       # Passo 5: Enviar arquivos via FTP
       - name: Deploy to server using FTP
