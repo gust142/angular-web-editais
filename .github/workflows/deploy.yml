@@ -16,7 +16,7 @@ jobs:
     - name: Configurar Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20'  
+        node-version: '20.11.1'  
     - name: Instalar dependências do projeto
       run: npm install
 
@@ -27,14 +27,16 @@ jobs:
       run: |
         sudo apt-get install lftp  # Instalar lftp
         lftp -e "
-          open ftp://$FTP_USER:$FTP_PASSWORD@$FTP_SERVER;
-          mirror -R ./dist/ /domains/systemsgf.com.br/public_html/processo-seletivo/;
-          bye
+        set ftp:ssl-verify-certificate no;  # Ignorar a verificação do certificado
+        open ftp://$FTP_USER:$FTP_PASSWORD@$FTP_SERVER;
+        mirror -R ./dist/ /public_html/processo-seletivo/;
+        bye
         " -u $FTP_USER,$FTP_PASSWORD
-      env:
+       env:
         FTP_USER: ${{ secrets.FTP_USER }}
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         FTP_SERVER: ${{ secrets.FTP_SERVER }}
+
 
     - name: Limpeza após o deploy
       run: echo "Deploy via FTP finalizado!"
