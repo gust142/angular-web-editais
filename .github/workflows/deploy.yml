@@ -27,6 +27,7 @@ jobs:
       run: |
         sudo apt-get install lftp  # Instalar lftp
         lftp -e "
+          set ftp:ssl-verify-certificate no;
           open ftp://$FTP_USER:$FTP_PASSWORD@$FTP_SERVER;
           mirror -R ./dist/ /domains/systemsgf.com.br/public_html/processo-seletivo/;
           bye
