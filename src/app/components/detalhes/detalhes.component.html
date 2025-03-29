@@ -55,23 +55,30 @@
 
         <mat-card-content *ngIf="edital.aberto == true">
             <form [formGroup]="form" (ngSubmit)="submitForm()" class="form-container">
-                <mat-form-field appearance="fill" class="form-field">
-                    <mat-label>Nome Completo</mat-label>
-                    <input formControlName="nome" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="form-field">
-                    <mat-label>Email</mat-label>
-                    <input formControlName="email" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="form-field">
-                    <mat-label>Cargo</mat-label>
-                    <input formControlName="cargo" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="form-field">
-                    <mat-label>Assunto</mat-label>
-                    <input formControlName="assunto" matInput>
-                </mat-form-field>
-                <button mat-flat-button class="blue-button submit-button" type="submit">Enviar Formulário</button>
+
+                <tui-textfield class="form-field" iconStart="@tui.user">
+                    <label tuiLabel>Nome Completo</label>
+                    <input placeholder="Digite seu Nome Completo" tuiTextfield formControlName="nome" />
+                </tui-textfield>
+
+                <tui-textfield class="form-field" iconStart="@tui.mail">
+                    <label tuiLabel>Email</label>
+                    <input placeholder="Digite seu Email" tuiTextfield formControlName="email" />
+                </tui-textfield>
+
+                <tui-textfield class="form-field" iconStart="@tui.notebook-pen">
+                    <label tuiLabel>Cargo</label>
+                    <input placeholder="Digite seu Cargo" tuiTextfield formControlName="cargo" />
+                </tui-textfield>
+
+                <tui-textfield class="form-field" iconStart="@tui.message-circle">
+                    <label tuiLabel>Assunto</label>
+                    <input placeholder="Digite seu Assunto" tuiTextfield formControlName="assunto" />
+                </tui-textfield>
+                <!-- <button mat-flat-button class="blue-button submit-button" type="submit">Enviar Formulário</button> -->
+                <button size="m" tuiButton type="button" class="blue-button submit-button" type="submit">
+                    Enviar Formulário
+                </button>
             </form>
         </mat-card-content>
     </mat-card>

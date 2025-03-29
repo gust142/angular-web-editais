@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MainService } from '../../services/main.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -18,17 +18,23 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Edital } from '../../models/edital';
 import { Ong } from '../../models/ong';
 import { Link } from '../../models/link';
-
+import { TuiDataList } from '@taiga-ui/core';
+import { TuiDataListWrapper, tuiItemsHandlersProvider } from '@taiga-ui/kit';
+import { TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
+import { TuiStringHandler } from '@taiga-ui/cdk/types';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
   imports: [MatButtonModule, FormsModule,
-    MatCardModule, MatToolbarModule, MatIconModule, CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatTabsModule, MatExpansionModule, MatSelectModule, MatSlideToggleModule],
+    MatCardModule, MatToolbarModule, MatIconModule, CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatTabsModule,
+    MatExpansionModule, MatSelectModule, MatSlideToggleModule, TuiDataList, TuiDataListWrapper, TuiSelectModule,
+    TuiTextfieldControllerModule],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent {
+  protected stringify: TuiStringHandler<Ong> = (item) => item.nome ?? '';
   form: FormGroup;
   private _snackBar = inject(MatSnackBar);
   years: Number[] = [2022, 2023, 2024, 2025]
@@ -46,8 +52,10 @@ export class AdminComponent {
 
   constructor(private router: Router, private location: Location, private formBuilder: FormBuilder, private mainService: MainService) {
     this.form = this.formBuilder.group({
-
+      ano: ['', [Validators.required]],
+      processo: ['', [Validators.required]]
     });
+
   }
   ngOnInit() {
     if (localStorage.getItem("token") == undefined) {
@@ -72,6 +80,9 @@ export class AdminComponent {
   }
 
   criarEdital() {
+    const { ano, processo } = this.form.value;
+    this.anoSelecionado = ano;
+    this.processoSelecionado = processo;
     if (!this.editais.find(item => { return item.id == "0" })) {
       this.editais.push({
         id: "0",
@@ -86,13 +97,16 @@ export class AdminComponent {
     }
   }
   buscarEditais() {
-    console.log(this.processoSelecionado.id);
-
-    this.mainService.liestarEditaisPorAno(this.anoSelecionado, Number.parseInt(this.processoSelecionado.id)).subscribe({
-      next: (response) => {
-        this.editais = response
-      }
-    })
+    if (this.form.valid) {
+      const { ano, processo } = this.form.value;
+      this.anoSelecionado = ano;
+      this.processoSelecionado = processo;
+      this.mainService.liestarEditaisPorAno(this.anoSelecionado, Number.parseInt(this.processoSelecionado.id)).subscribe({
+        next: (response) => {
+          this.editais = response
+        }
+      })
+    }
   }
   save() {
 

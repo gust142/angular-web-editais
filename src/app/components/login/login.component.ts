@@ -10,10 +10,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MainService } from '../../services/main.service';
+import { TuiTextfield, TuiTextfieldComponent } from '@taiga-ui/core';
+import { TuiButton } from '@taiga-ui/core';
+
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule, CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+  imports: [MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule, CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
+    TuiTextfield, TuiTextfieldComponent, TuiButton],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

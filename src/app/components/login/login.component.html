@@ -14,27 +14,24 @@
     <mat-card class="login-card">
         <mat-card-title>Iniciar Sessão</mat-card-title>
         <form [formGroup]="loginForm" (ngSubmit)="login()">
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" type="email" placeholder="Digite seu email" />
-                <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
-                    O email é obrigatório
-                </mat-error>
-                <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
-                    Email inválido
-                </mat-error>
-            </mat-form-field>
 
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Senha</mat-label>
-                <input matInput formControlName="password" type="password" placeholder="Digite sua senha" />
-                <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-                    A senha é obrigatória
-                </mat-error>
-            </mat-form-field>
+            <tui-textfield iconStart="@tui.user" class="full-width">
+                <label tuiLabel>Email</label>
+                <input placeholder="Digite seu email" tuiTextfield formControlName="email" type="email" />
+            </tui-textfield>
 
-            <button mat-flat-button type="submit" class="botao" style="background-color: #1A7BBD"
-                [disabled]="!loginForm.valid">Entrar</button>
+            <tui-textfield iconStart="@tui.lock" class="full-width">
+                <label tuiLabel>Senha</label>
+                <input placeholder="Digite seu email" tuiTextfield formControlName="password" type="password"
+                    placeholder="Digite sua senha" />
+            </tui-textfield>
+
+            <button size="m" tuiButton type="button" [disabled]="!loginForm.valid" class="botao" type="submit">
+                Entrar
+            </button>
+
+            <!-- <button mat-flat-button type="submit" class="botao" style="background-color: #1A7BBD"
+                [disabled]="!loginForm.valid">Entrar</button> -->
         </form>
     </mat-card>
 </div>
